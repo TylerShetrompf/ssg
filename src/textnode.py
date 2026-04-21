@@ -17,8 +17,8 @@ class TextNode():
         self.text_type = TextType(text_type)
         self.url = url
 
-    def __eq__(self, other):
-        if self == other:
+    def __eq__(self, target):
+        if self.text == target.text and self.text_type == target.text_type and self.url == target.url:
             return True
     
     def __repr__(self):
