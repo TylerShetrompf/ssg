@@ -17,7 +17,7 @@ class HTMLNode():
 
     def to_html(self):
         
-        raise NotImplementedError
+        raise NotImplementedError("to_html method implemented only on child classes of HTMLNode")
     
     def props_to_html(self):
 

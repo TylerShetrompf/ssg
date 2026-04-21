@@ -15,7 +15,7 @@ class LeafNode(HTMLNode):
         
         if self.value == None:
         
-            raise ValueError
+            raise ValueError("No value on leaf node")
         
         if self.tag == None:
 
