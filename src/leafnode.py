@@ -3,11 +3,8 @@ from htmlnode import HTMLNode
 class LeafNode(HTMLNode):
 
     def __init__(self, tag, value, props = None):
-        
-        self.tag = tag
-        self.value = value
-        self.props = props
-        super().__init__(self.tag, self.value, None, self.props)
+
+        super().__init__(tag, value, None, props)
 
     def __repr__(self):
         print("**********Debug**********")
