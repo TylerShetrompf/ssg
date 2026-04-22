@@ -239,7 +239,7 @@ class TestSplitNodeLink(unittest.TestCase):
             new_nodes,
         )
 
-    def test_empty_string(self):
+    def test_empty_string_link(self):
         node = TextNode("", TextType.TEXT)
         new_nodes = split_nodes_link([node])
         self.assertListEqual([node], new_nodes)
@@ -252,5 +252,5 @@ class TestSplitNodeLink(unittest.TestCase):
             new_nodes,
         )
 
-if __name__ == '__main__':
-    unittest.main()
+if __name__ == "__main__":
+    unittest.main
