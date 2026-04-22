@@ -1,13 +1,14 @@
 from enum import Enum
+from leafnode import LeafNode
 
 # enum class for text types conversion
 class TextType(Enum):
-    TEXT = "text (plain)"
-    BOLD = "**Bold text**"
-    ITALIC = "_Italic text_"
-    CODE = "`Code text`"
-    LINK = "[anchor text](url)"
-    IMAGE = "![alt text](url)"
+    TEXT = ""
+    BOLD = "b"
+    ITALIC = "i"
+    CODE = "code"
+    LINK = "a"
+    IMAGE = "img"
 
 # textnode class for storing text data
 class TextNode():
@@ -26,3 +27,25 @@ class TextNode():
     # method for debug text
     def __repr__(self):
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
+    
+def text_node_to_html_node(text_node):
+    
+    # raise exception if text_node.text_type not in TextType
+    if text_node.text_type not in TextType:
+        raise Exception("text type of text node not in TextType")
+
+    if text_node.text_type == TextType.TEXT:
+        new_node = LeafNode(None, text_node.text, None)
+        return new_node
+    
+    if text_node.text_type in [TextType.ITALIC, TextType.BOLD, TextType.CODE]: 
+        new_node = LeafNode(text_node.text_type.value, text_node.text, None)
+        return new_node
+
+    if text_node.text_type == TextType.LINK:
+        new_node = LeafNode(text_node.text_type.value, text_node.text, {"href": text_node.url})
+        return new_node
+    
+    if text_node.text_type == TextType.IMAGE:
+        new_node = LeafNode(text_node.text_type.value, None, {"src": text_node.url, "alt": text_node.text})
+        return new_node
