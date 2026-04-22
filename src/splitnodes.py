@@ -23,7 +23,7 @@ def split_nodes_delimiter(old_nodes, delimiter, text_type):
 
                 if len(split_array) % 2 != 1:
 
-                    raise Exception("Invalid markdown syntax, missing closing delimiter")
+                    raise ValueError("Invalid markdown syntax, missing closing delimiter")
                 
                 else:
                     
