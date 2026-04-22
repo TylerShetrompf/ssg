@@ -28,6 +28,8 @@ class TextNode():
     def __repr__(self):
         return f"TextNode({self.text}, {self.text_type.value}, {self.url})"
     
+
+# function for converting text node to html leaf node
 def text_node_to_html_node(text_node):
     
     # raise exception if text_node.text_type not in TextType
