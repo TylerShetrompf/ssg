@@ -1,0 +1,73 @@
+/* Basic styles for a presentable and scalable HTML page */
+
+body {
+    font-family: 'Georgia', serif;
+    line-height: 1.8;
+    margin: 0;
+    padding: 20px; /* Added padding to prevent text cutoff */
+    background-color: #1a361a; /* Darker green for a natural feel */
+    color: #e0e0e0; /* Light grey for warmth and readability against dark background */
+    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 800 800"><rect fill="%231a361a" width="800" height="800"/><g fill-opacity="0.1"><circle fill="%232e522e" cx="400" cy="400" r="600"/><circle fill="%23436d43" cx="400" cy="400" r="500"/><circle fill="%23588958" cx="400" cy="400" r="400"/><circle fill="%236e9f6e" cx="400" cy="400" r="300"/><circle fill="%2383ba83" cx="400" cy="400" r="200"/><circle fill="%2398d698" cx="400" cy="400" r="100"/></g></svg>'); /* Subtle nature-inspired pattern in green tones */
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: #a5d6a7; /* Lighter green for headings to stand out */
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    font-family: 'Playfair Display', serif;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+p {
+    margin-bottom: 1.2em;
+    text-align: justify;
+}
+
+a {
+    color: #81c784; /* Green for links */
+    text-decoration: none;
+    border-bottom: 1px dashed #81c784;
+    transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+a:hover {
+    color: #a5d6a7;
+    border-bottom-color: #a5d6a7;
+    text-decoration: none;
+}
+
+/* A simple container for better readability on wider screens */
+.container {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 30px;
+    background-color: rgba(26, 54, 26, 0.9); /* Darker, slightly transparent green */
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4); /* Darker shadow */
+    border: 1px solid #4caf50; /* Green border */
+}
+
+/* Basic responsiveness */
+@media (max-width: 768px) {
+    body {
+        margin: 15px;
+        padding: 15px; /* Adjusted padding for smaller screens */
+    }
+    .container {
+        margin: 15px;
+        padding: 20px;
+    }
+}
+
+/* Image sizing for documentation */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    border: 1px solid #4caf50;
+}
