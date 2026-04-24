@@ -8,6 +8,7 @@ from textnode import TextNode, TextType, text_node_to_html_node
 from splitnodes import split_nodes_delimiter, split_nodes_image, split_nodes_link
 from texttotextnode import text_to_textnodes
 from blocktype import BlockType, block_to_block_type
+from blocktohtml import markdown_to_html_node
 
 # Extract Markdown
 class TestExtractMarkdown(unittest.TestCase):
@@ -725,6 +726,7 @@ class TestTextToTextNode(unittest.TestCase):
         with self.assertRaises(ValueError):
             text_to_textnodes("This is `unclosed code text")
 
+# Block type
 class TestBlockType(unittest.TestCase):
 
     def test_block_unordered(self):
@@ -762,6 +764,38 @@ class TestBlockType(unittest.TestCase):
         res = block_to_block_type("> this is a \n> multi-line\n> quoted block")
 
         self.assertEqual(BlockType.QUOTE, res)
+
+# Block to HTML
+class TestBlockToHTML(unittest.TestCase):
+    def test_markdown_to_html_node_paragraph(self):
+        markdown = "This is a paragraph."
+        node = markdown_to_html_node(markdown)
+        self.assertEqual(node.to_html(), "<div><p>This is a paragraph.</p></div>")
+
+    def test_markdown_to_html_node_code(self):
+        markdown = """```
+print('Hello, world!')```"""
+        node = markdown_to_html_node(markdown)
+        self.assertEqual(node.to_html(), "<div><pre><code>print('Hello, world!')</code></pre></div>")
+
+    def test_markdown_to_html_node_quote(self):
+        markdown = """> This is a quote.
+> Second line."""
+        node = markdown_to_html_node(markdown)
+        self.assertEqual(node.to_html(), "<div><blockquote>This is a quote. Second line. </blockquote></div>")
+
+    def test_markdown_to_html_node_unordered_list(self):
+        markdown = """- Item 1
+- Item 2"""
+        node = markdown_to_html_node(markdown)
+        self.assertEqual(node.to_html(), "<div><ul><li>Item 1</li><li>Item 2</li></ul></div>")
+
+    def test_markdown_to_html_node_ordered_list(self):
+        markdown = """1. First item
+2. Second item"""
+        node = markdown_to_html_node(markdown)
+        self.assertEqual(node.to_html(), "<div><ol><li>First item</li><li>Second item</li></ol></div>")
+
 
 if __name__ == '__main__':
     unittest.main()
