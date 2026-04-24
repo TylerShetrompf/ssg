@@ -1,1 +1,5 @@
 __pycache__/
+static/images
+static/index.css
+public/*
+content/*

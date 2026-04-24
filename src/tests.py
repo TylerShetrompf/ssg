@@ -9,6 +9,7 @@ from splitnodes import split_nodes_delimiter, split_nodes_image, split_nodes_lin
 from texttotextnode import text_to_textnodes
 from blocktype import BlockType, block_to_block_type
 from blocktohtml import markdown_to_html_node
+from main import extract_title
 
 # Extract Markdown
 class TestExtractMarkdown(unittest.TestCase):
@@ -796,6 +797,22 @@ print('Hello, world!')```"""
         node = markdown_to_html_node(markdown)
         self.assertEqual(node.to_html(), "<div><ol><li>First item</li><li>Second item</li></ol></div>")
 
+# Header extraction
+class TestExtractTitle(unittest.TestCase):
+    
+    def test_header_with_trailing_white(self):
+        md = """# this is a header
+this is not
+this is also not
+this has some trailing white space   """
+        res = extract_title(md)
+        self.assertEqual("this is a header", res)
+
+    def test_no_header(self):
+        md = """ this test has no header
+but it does have
+multiple lines"""
+        self.assertRaises(Exception, extract_title(md))
 
 if __name__ == '__main__':
     unittest.main()

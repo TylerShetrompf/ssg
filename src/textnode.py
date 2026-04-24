@@ -49,5 +49,5 @@ def text_node_to_html_node(text_node):
         return new_node
     
     if text_node.text_type == TextType.IMAGE:
-        new_node = LeafNode(text_node.text_type.value, None, {"src": text_node.url, "alt": text_node.text})
+        new_node = LeafNode(text_node.text_type.value, "", {"src": text_node.url, "alt": text_node.text})
         return new_node

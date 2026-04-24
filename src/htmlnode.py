@@ -12,11 +12,11 @@ class HTMLNode():
         self.props = props # dict of key value pairs representing html attributes
 
     # debug text method
-    def __repr__(self):
+    '''def __repr__(self):
         print("**********Debug**********")
         print(f'\ntag: {self.tag}\n value: {self.value}\n children: {self.children}\n props: {self.props}\n')
         print("****** End of Debug *****")
-
+'''
     # to_html method implemented only on child classes of HTMLNode
     def to_html(self):
         
