@@ -7,6 +7,7 @@ from parentnode import ParentNode
 from textnode import TextNode, TextType, text_node_to_html_node
 from splitnodes import split_nodes_delimiter, split_nodes_image, split_nodes_link
 from texttotextnode import text_to_textnodes
+from blocktype import BlockType, block_to_block_type
 
 # Extract Markdown
 class TestExtractMarkdown(unittest.TestCase):
@@ -723,6 +724,44 @@ class TestTextToTextNode(unittest.TestCase):
             text_to_textnodes("This is _unclosed italic text")
         with self.assertRaises(ValueError):
             text_to_textnodes("This is `unclosed code text")
+
+class TestBlockType(unittest.TestCase):
+
+    def test_block_unordered(self):
+
+        res = block_to_block_type("- This is a list\n- with items",)
+
+        self.assertEqual(BlockType.UNORDERED, res)
+    
+    def test_block_ordered(self):
+        
+        res = block_to_block_type("1. This is an ordered list\n2. with items")
+        
+        self.assertEqual(BlockType.ORDERED, res)
+
+    def test_block_paragraph(self):
+        
+        res = block_to_block_type("This is a regular paragraph.")
+
+        self.assertEqual(BlockType.PARAGRAPH, res)
+
+    def test_block_code(self):
+
+        res = block_to_block_type("```\nThis is a code block\nwith multiple lines\n```")
+        
+        self.assertEqual(BlockType.CODE, res)
+
+    def test_block_heading(self):
+
+        res = block_to_block_type("# This is a heading block\n## with multiple header levels\n### like this")
+        
+        self.assertEqual(BlockType.HEADING, res)
+
+    def test_block_quote(self):
+
+        res = block_to_block_type("> this is a \n> multi-line\n> quoted block")
+
+        self.assertEqual(BlockType.QUOTE, res)
 
 if __name__ == '__main__':
     unittest.main()
